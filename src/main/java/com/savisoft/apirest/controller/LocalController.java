@@ -6,12 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class LocalController {
 
     @Autowired
     LocalService localService;
+
+    @GetMapping("/findLocalByNameWithJPQL/{name}")
+    Optional<Local> findLocalByNameWithJPQL(@PathVariable String name){
+        return localService.findLocalByNameWithJPQL(name);
+    }
+
+    @GetMapping("/findByName/{name}")
+    Optional<Local> findByName(@PathVariable String name){
+        return localService.findByName(name);
+    }
+    @GetMapping("/findByNameIgnoredCase/{name}")
+    Optional<Local> findByNameIgnoredCase(@PathVariable String name){
+        return localService.findByNameIgnoredCase(name);
+    }
 
     @GetMapping("/findAllLocals")
     public List<Local> findAllLocals(){
@@ -32,6 +47,7 @@ public class LocalController {
     public void deleteLocal(@PathVariable Long id){
         localService.deleteLocal(id);
     }
+
 
 
 

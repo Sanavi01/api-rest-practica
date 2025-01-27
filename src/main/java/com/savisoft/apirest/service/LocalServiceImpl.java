@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class LocalServiceImpl implements LocalService {
@@ -44,5 +45,20 @@ public class LocalServiceImpl implements LocalService {
     @Override
     public void deleteLocal(Long id) {
         localRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Local> findLocalByNameWithJPQL(String name) {
+        return localRepository.findLocalByNameWithJPQL(name);
+    }
+
+    @Override
+    public Optional<Local> findByName(String name) {
+        return localRepository.findByName(name);
+    }
+
+    @Override
+    public Optional<Local> findByNameIgnoredCase(String name) {
+        return localRepository.findByNameIgnoreCase(name);
     }
 }
