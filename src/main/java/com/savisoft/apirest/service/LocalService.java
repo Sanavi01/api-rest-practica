@@ -1,6 +1,7 @@
 package com.savisoft.apirest.service;
 
 import com.savisoft.apirest.entity.Local;
+import com.savisoft.apirest.error.LocalNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ public interface LocalService {
     Optional<Local> findLocalByNameWithJPQL(String name);
     Optional<Local> findByName(String name);
     Optional<Local> findByNameIgnoredCase(String name);
+    Local findLocalById (Long id) throws LocalNotFoundException;
 
 
 

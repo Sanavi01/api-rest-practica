@@ -1,6 +1,7 @@
 package com.savisoft.apirest.controller;
 
 import com.savisoft.apirest.entity.Local;
+import com.savisoft.apirest.error.LocalNotFoundException;
 import com.savisoft.apirest.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,11 @@ public class LocalController {
     @GetMapping("/findByNameIgnoredCase/{name}")
     Optional<Local> findByNameIgnoredCase(@PathVariable String name){
         return localService.findByNameIgnoredCase(name);
+    }
+
+    @GetMapping("/findLocalById/{id}")
+    Local findByName(@PathVariable Long id) throws LocalNotFoundException {
+        return localService.findLocalById(id);
     }
 
     @GetMapping("/findAllLocals")

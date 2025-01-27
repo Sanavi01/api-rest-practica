@@ -1,6 +1,7 @@
 package com.savisoft.apirest.service;
 
 import com.savisoft.apirest.entity.Local;
+import com.savisoft.apirest.error.LocalNotFoundException;
 import com.savisoft.apirest.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,5 +61,15 @@ public class LocalServiceImpl implements LocalService {
     @Override
     public Optional<Local> findByNameIgnoredCase(String name) {
         return localRepository.findByNameIgnoreCase(name);
+    }
+
+    @Override
+    public Local findLocalById(Long id) throws LocalNotFoundException {
+        Optional<Local> local = localRepository.findById(id);
+        if(!local.isPresent()){
+            throw new LocalNotFoundException("local is not available");
+        }
+
+        return local.get();
     }
 }
