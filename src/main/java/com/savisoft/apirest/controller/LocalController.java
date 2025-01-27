@@ -3,6 +3,7 @@ package com.savisoft.apirest.controller;
 import com.savisoft.apirest.entity.Local;
 import com.savisoft.apirest.error.LocalNotFoundException;
 import com.savisoft.apirest.service.LocalService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class LocalController {
     }
 
     @PostMapping("/saveLocal")
-    public Local saveLocal(@RequestBody Local local){
+    public Local saveLocal(@Valid @RequestBody Local local){
         return localService.saveLocal(local);
     }
 
